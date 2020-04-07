@@ -10,15 +10,32 @@ function ProductPage ({ product }) {
     <>
       <header>
         <Link href={`/[lang]?lang=${lang}`} as={`/${lang}`} >
-          <a>NEXT -> Games Store</a>
+          <a>{t('NEXT Games Store', lang)}</a>
         </Link>
+        <hr />
       </header>
 
       <main>
-        <div>{product.name}</div>
+        <div>
+          <p><b>{t('Name', lang)}</b>:</p>
+          <p>{product.name}</p>
+        </div>
+        <div>
+          <p><b>{t('Description', lang)}</b>:</p>
+          <div dangerouslySetInnerHTML={{ __html: product.description}} />
+        </div>
+        <div>
+          <img
+            style={{maxWidth: 300}}
+            src={product.background_image}
+            alt={`${t('Image for')}: ${product.name}`}
+          />
+        </div>
       </main>
 
       <footer>
+        <hr />
+
         <Link
           href={`/[lang]/product/[productId]?lang=en&productId=${productId}`}
           as={`/en/product/${productId}`}
@@ -29,7 +46,7 @@ function ProductPage ({ product }) {
         &nbsp;&nbsp; | &nbsp;&nbsp;
 
         <Link
-          href={`/[lang]/produit/[productId]?lang=fr&productId=${productId}`}
+          href={`/[lang]/product/[productId]?lang=fr&productId=${productId}`}
           as={`/fr/produit/${productId}`}
         >
           <a>Française</a>
@@ -37,6 +54,25 @@ function ProductPage ({ product }) {
       </footer>
     </>
   )
+}
+
+function t (name, lang) {
+  if (lang !== 'fr') {
+    return name
+  }
+
+  switch (name) {
+    case 'NEXT Games Store':
+      return 'Boutique de jeux NEXT'
+    case 'Name':
+      return 'Nom'
+    case 'Description':
+      return 'Description (uniquement disponible en anglais)'
+    case 'Image for':
+      return 'Image pour'
+    default:
+      return name
+  }
 }
 
 export async function getServerSideProps ({ query }) {
