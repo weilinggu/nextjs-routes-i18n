@@ -1,0 +1,20 @@
+{
+  "name": "nextjs-routes-i18n",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "now": "now"
+  },
+  "dependencies": {
+    "isomorphic-unfetch": "^3.0.0",
+    "lodash": "^4.17.15",
+    "next": "^9.3.4",
+    "now": "^17.1.1",
+    "querystring": "^0.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
