@@ -9,7 +9,7 @@ module.exports = {
 async function redirects () {
   return [
     { source: '/:path+/', permanent: true, destination: '/:path+' }, // remove trailing slash
-    { source: '/', permanent: true, destination: '/en' }, // redirect home to english
+    // { source: '/', permanent: true, destination: '/en' }, // redirect home to english
     //
     // Re-writing the /_next folder does not seem to work,
     // so we add a redirect for each rewrite.

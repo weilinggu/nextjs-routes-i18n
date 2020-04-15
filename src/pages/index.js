@@ -9,20 +9,20 @@ function Home () {
   const localizedLink = (productId) => {
     switch (lang) {
       case 'fr':
-        return `/fr/produit/${productId}`
+        return `/produit/${productId}`
       case 'en':
       default:
-        return `/en/product/${productId}`
+        return `/product/${productId}`
     }
   }
 
   const localizedHref = (productId) => {
     switch (lang) {
       case 'fr':
-        return `/[lang]/product/[productId]?lang=fr&&productId=${productId}`
+        return `/product/[productId]?lang=fr&&productId=${productId}`
       case 'en':
       default:
-        return `/[lang]/product/[productId]?lang=en&&productId=${productId}`
+        return `/product/[productId]?lang=en&&productId=${productId}`
     }
   }
 
