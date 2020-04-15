@@ -4,7 +4,7 @@ const NextJSApp = ({ Component, pageProps, lang }) => {
   console.log(lang)
   return (
     <>
-      <Component {...pageProps, lang} />
+      <Component {...pageProps} />
     </>
   )
 }
