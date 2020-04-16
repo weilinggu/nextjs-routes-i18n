@@ -2,14 +2,14 @@ import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-function ProductPage ({ product }) {
+function ProductPage ({ product, lang }) {
   const router = useRouter()
-  const { lang, productId } = router.query
+  const { productId } = router.query
 
   return (
     <>
       <header>
-        <Link href={`/[lang]?lang=${lang}`} as={`/${lang}`} >
+        <Link href={`/`}>
           <a>{t('NEXT Games Store', lang)}</a>
         </Link>
         <hr />

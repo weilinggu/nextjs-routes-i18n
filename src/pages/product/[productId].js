@@ -2,14 +2,14 @@ import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-function ProductPage ({ product }) {
+function ProductPage ({ product, lang }) {
   const router = useRouter()
-  const { lang, productId } = router.query
+  const { productId } = router.query
 
   return (
     <>
       <header>
-        <Link href={`/[lang]?lang=${lang}`} as={`/${lang}`} >
+        <Link href={`/`}>
           <a>{t('NEXT Games Store', lang)}</a>
         </Link>
         <hr />
@@ -39,43 +39,63 @@ function ProductPage ({ product }) {
       <footer>
         <hr />
 
-        <Link
-          href={`/[lang]/product/[productId]?lang=en&productId=${productId}`}
-          as={`/en/product/${productId}`}
+        <a
+          href={`http://headlessboost.com:3000/product/${productId}`}
         >
-          <a>English</a>
-        </Link>
+          English
+        </a>
 
         &nbsp;&nbsp; | &nbsp;&nbsp;
 
-        <Link
-          href={`/[lang]/product/[productId]?lang=fr&productId=${productId}`}
-          as={`/fr/produit/${productId}`}
+        <a
+          href={`http://headlessboost.fr:3000/product/${productId}`}
         >
-          <a>Française</a>
-        </Link>
+          Française
+        </a>
+        &nbsp;&nbsp; | &nbsp;&nbsp;
+
+        <a
+          href={`http://headlessboost.br:3000/product/${productId}`}
+        >
+          Portuguese
+        </a>
       </footer>
     </>
   )
 }
 
 function t (name, lang) {
-  if (lang !== 'fr') {
-    return name
+  if (lang == 'fr') {
+    switch (name) {
+      case 'NEXT Games Store':
+        return 'Boutique de jeux NEXT'
+      case 'Name':
+        return 'Nom'
+      case 'Description':
+        return 'Description (uniquement disponible en anglais)'
+      case 'Image for':
+        return 'Image pour'
+      default:
+        return name
+    }
+  }
+  if (lang == 'pt') {
+    switch (name) {
+      case 'NEXT Games Store':
+        return 'NEXT Loja de Jogos'
+      case 'Name':
+        return 'nome'
+      case 'Description':
+        return 'Description (descrição)'
+      case 'Image for':
+        return 'Imagem para'
+      default:
+        return name
+    }
   }
 
-  switch (name) {
-    case 'NEXT Games Store':
-      return 'Boutique de jeux NEXT'
-    case 'Name':
-      return 'Nom'
-    case 'Description':
-      return 'Description (uniquement disponible en anglais)'
-    case 'Image for':
-      return 'Image pour'
-    default:
-      return name
-  }
+  return name
+  
 }
 
 export async function getServerSideProps ({ query }) {
