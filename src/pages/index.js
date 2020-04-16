@@ -2,14 +2,14 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-function Home () {
+function Home ({ lang }) {
   const router = useRouter()
-  const { lang } = router.query
+  console.log(lang)
 
   const localizedLink = (productId) => {
     switch (lang) {
       case 'fr':
-        return `/produit/${productId}`
+        return `/product/${productId}`
       case 'en':
       default:
         return `/product/${productId}`
@@ -60,29 +60,48 @@ function Home () {
 
       <footer>
         <hr />
-        <Link href='/[lang]?lang=en' as='/en' ><a>English</a></Link>
+        <a href='http://headlessboost.com:3000' >English</a>
         &nbsp;&nbsp; | &nbsp;&nbsp;
-        <Link href='/[lang]?lang=fr' as='/fr' ><a>Française</a></Link>
+        <a href='http://headlessboost.fr:3000' >Française</a>
+        &nbsp;&nbsp; | &nbsp;&nbsp;
+        <a href='http://headlessboost.br:3000' >Portuguese</a>
       </footer>
     </div>
   )
 }
 
 function t (text, lang) {
-  if (lang !== 'fr') {
-    return text
+  // if (lang !== 'fr') {
+  //   return text
+  // }
+
+  if (lang == 'fr') {
+    switch (text) {
+      case 'NEXT Games Store':
+        return 'Boutique de jeux NEXT'
+      case 'Welcome to to NEXT Games Store':
+        return 'Bienvenue sur Boutique de jeux NEXT'
+      case 'Available games':
+        return 'Jeux disponibles'
+      default:
+        return text
+    }
   }
 
+if (lang == 'pt') {
   switch (text) {
     case 'NEXT Games Store':
-      return 'Boutique de jeux NEXT'
+      return 'NEXT Loja de Jogos'
     case 'Welcome to to NEXT Games Store':
-      return 'Bienvenue sur Boutique de jeux NEXT'
+      return 'Bem-vindo à NEXT Games StoreJogos disponíveis'
     case 'Available games':
-      return 'Jeux disponibles'
+      return 'Jogos disponíveis'
     default:
       return text
   }
+}
+
+return text
 }
 
 export default Home
