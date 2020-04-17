@@ -1,8 +1,10 @@
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'react-i18next'
 
 function ProductPage ({ product, lang }) {
+  const { t } = useTranslation('common')
   const router = useRouter()
   const { productId } = router.query
 
@@ -64,39 +66,39 @@ function ProductPage ({ product, lang }) {
   )
 }
 
-function t (name, lang) {
-  if (lang == 'fr') {
-    switch (name) {
-      case 'NEXT Games Store':
-        return 'Boutique de jeux NEXT'
-      case 'Name':
-        return 'Nom'
-      case 'Description':
-        return 'Description (uniquement disponible en anglais)'
-      case 'Image for':
-        return 'Image pour'
-      default:
-        return name
-    }
-  }
-  if (lang == 'pt') {
-    switch (name) {
-      case 'NEXT Games Store':
-        return 'NEXT Loja de Jogos'
-      case 'Name':
-        return 'nome'
-      case 'Description':
-        return 'Description (descrição)'
-      case 'Image for':
-        return 'Imagem para'
-      default:
-        return name
-    }
-  }
+// function t (name, lang) {
+//   if (lang == 'fr') {
+//     switch (name) {
+//       case 'NEXT Games Store':
+//         return 'Boutique de jeux NEXT'
+//       case 'Name':
+//         return 'Nom'
+//       case 'Description':
+//         return 'Description (uniquement disponible en anglais)'
+//       case 'Image for':
+//         return 'Image pour'
+//       default:
+//         return name
+//     }
+//   }
+//   if (lang == 'pt') {
+//     switch (name) {
+//       case 'NEXT Games Store':
+//         return 'NEXT Loja de Jogos'
+//       case 'Name':
+//         return 'nome'
+//       case 'Description':
+//         return 'Description (descrição)'
+//       case 'Image for':
+//         return 'Imagem para'
+//       default:
+//         return name
+//     }
+//   }
 
-  return name
+//   return name
   
-}
+// }
 
 export async function getServerSideProps ({ query }) {
   const { productId } = query

@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'react-i18next'
 
 function Home ({ lang }) {
+  const { t } = useTranslation('common')
   const router = useRouter()
-  console.log(lang)
+  // console.log(lang)
 
   const localizedLink = (productId) => {
     switch (lang) {
@@ -70,38 +72,38 @@ function Home ({ lang }) {
   )
 }
 
-function t (text, lang) {
-  // if (lang !== 'fr') {
-  //   return text
-  // }
+// function t (text, lang) {
+//   // if (lang !== 'fr') {
+//   //   return text
+//   // }
 
-  if (lang == 'fr') {
-    switch (text) {
-      case 'NEXT Games Store':
-        return 'Boutique de jeux NEXT'
-      case 'Welcome to to NEXT Games Store':
-        return 'Bienvenue sur Boutique de jeux NEXT'
-      case 'Available games':
-        return 'Jeux disponibles'
-      default:
-        return text
-    }
-  }
+//   if (lang == 'fr') {
+//     switch (text) {
+//       case 'NEXT Games Store':
+//         return 'Boutique de jeux NEXT'
+//       case 'Welcome to to NEXT Games Store':
+//         return 'Bienvenue sur Boutique de jeux NEXT'
+//       case 'Available games':
+//         return 'Jeux disponibles'
+//       default:
+//         return text
+//     }
+//   }
 
-if (lang == 'pt') {
-  switch (text) {
-    case 'NEXT Games Store':
-      return 'NEXT Loja de Jogos'
-    case 'Welcome to to NEXT Games Store':
-      return 'Bem-vindo à NEXT Games StoreJogos disponíveis'
-    case 'Available games':
-      return 'Jogos disponíveis'
-    default:
-      return text
-  }
-}
+// if (lang == 'pt') {
+//   switch (text) {
+//     case 'NEXT Games Store':
+//       return 'NEXT Loja de Jogos'
+//     case 'Welcome to to NEXT Games Store':
+//       return 'Bem-vindo à NEXT Games StoreJogos disponíveis'
+//     case 'Available games':
+//       return 'Jogos disponíveis'
+//     default:
+//       return text
+//   }
+// }
 
-return text
-}
+// return text
+// }
 
 export default Home
