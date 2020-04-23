@@ -2,11 +2,13 @@ import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
+import contentful from '../../../helpers/contentful'
 
 function ProductPage ({ product, lang }) {
   const { t } = useTranslation('common')
   const router = useRouter()
   const { productId } = router.query
+  console.log(product)
 
   return (
     <>
@@ -102,8 +104,30 @@ function ProductPage ({ product, lang }) {
 
 export async function getServerSideProps ({ query }) {
   const { productId } = query
-  const product = await (await fetch(`https://api.rawg.io/api/games/${productId}`)).json()
+  // const product = await (await fetch(`https://api.rawg.io/api/games/${productId}`)).json()
+  let product = []
+  contentful.getEntries({
+    'fields.sku': productId,
+    'content_type': 'product'
+  })
+  .then(function (entries) {
+    entries.items.forEach(function (entry) {
+    product.push(JSON.stringify(entry.fields.sku))
+})
+})
+// const entry = contentful.getEntry(productId)
+// .then(function (entry) {
+//   // logs the entry metadata
+//   // console.log(entry.sys)
 
+//   // logs the field with ID title
+//   // console.log(entry.fields.productName)
+// })
+// const fields = entry.fields.productName
+  // Inject in props of our screen component
+  // return { allPosts: entries.items };
+  // const product = entry
+  // const fields = product
   return { props: { product } }
 }
 

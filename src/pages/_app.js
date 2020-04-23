@@ -1,6 +1,13 @@
 import i18next from 'i18next';
 import { getI18n, initReactI18next, useSSR } from 'react-i18next';
+import { createClient } from "contentful";
+import config from "../../config.json";
 
+
+const client = createClient({
+    space: config.space,
+    accessToken: config.accessToken
+  });
 
 const NextJSApp = ({ Component, pageProps, lang }) => {
     console.log(lang)
@@ -54,7 +61,7 @@ const NextJSApp = ({ Component, pageProps, lang }) => {
 
     return (
         <>
-            <Component {...pageProps} lang={lang} />
+            <Component {...pageProps} lang={lang} client={client}/>
         </>
     );
 };
