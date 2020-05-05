@@ -19,7 +19,10 @@ const NextJSApp = ({ Component, pageProps, lang }) => {
                         common: {
                             'NEXT Games Store': 'NEXT Games Store',
                             'Welcome to to NEXT Games Store': 'Welcome to to NEXT Games Store',
-                            'Available games': 'Available games'
+                            'Available games': 'Available games',
+                            'Name': 'Name',
+                            'Description': 'Description',
+                            'Image for': 'Image for'
                         },
                     },
                     fr: {
